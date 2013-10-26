@@ -4,7 +4,7 @@
   <tr>
     <th>Name</th>
     <th>Description</th>
-    <th>Time in minutes</th>
+    <th>Hours</th>
     <th>Fee</th>
     <th>Path</th>
     <th>Prerequisite</th>
@@ -18,9 +18,9 @@
     <td><%= certification.name %></td>
     <td><%= certification.description %></td>
     <td><%= certification.time_in_minutes %></td>
-    <td><%= certification.fee %></td>
-    <td><%= certification.path_id %></td>
-    <td><%= certification.prerequisite_id %></td>
+    <td><%= number_to_currency(certification.fee) %></td>
+    <td><%= certification.path.name %></td>
+    <td><%= certification.prerequisite.try(:name) %></td>
     <td><%= link_to 'Show', certification %></td>
     <td><%= link_to 'Edit', edit_certification_path(certification) %></td>
     <td><%= link_to 'Destroy', certification, method: :delete, data: { confirm: 'Are you sure?' } %></td>

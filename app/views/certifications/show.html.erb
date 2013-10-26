@@ -17,17 +17,17 @@
 
 <p>
   <b>Fee:</b>
-  <%= @certification.fee %>
+  <%= number_to_currency(@certification.fee) %>
 </p>
 
 <p>
   <b>Path:</b>
-  <%= @certification.path_id %>
+  <%= @certification.path.name %>
 </p>
 
 <p>
   <b>Prerequisite:</b>
-  <%= @certification.prerequisite_id %>
+  <%= @certification.prerequisite.try(:name) %>
 </p>
 
 

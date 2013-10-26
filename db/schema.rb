@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131026213030) do
+ActiveRecord::Schema.define(:version => 20131026214129) do
 
   create_table "authorizations", :force => true do |t|
     t.string   "provider"
@@ -27,6 +27,15 @@ ActiveRecord::Schema.define(:version => 20131026213030) do
     t.string   "area"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "certification_assertions", :force => true do |t|
+    t.integer  "certification_id"
+    t.integer  "user_id"
+    t.boolean  "is_verified"
+    t.datetime "verification_date"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   create_table "certifications", :force => true do |t|
@@ -67,6 +76,13 @@ ActiveRecord::Schema.define(:version => 20131026213030) do
     t.integer  "quantity"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
+  end
+
+  create_table "paths", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "physical_assets", :force => true do |t|

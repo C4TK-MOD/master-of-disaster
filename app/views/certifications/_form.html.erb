@@ -29,11 +29,11 @@
   </div>
   <div class="field">
     <%= f.label :path_id %><br />
-    <%= f.number_field :path_id %>
+    <%= f.select :path_id, path_selections %>
   </div>
   <div class="field">
     <%= f.label :prerequisite_id %><br />
-    <%= f.number_field :prerequisite_id %>
+    <%= f.select :prerequisite_id, prerequisite_selections(f.object), include_blank: true %>
   </div>
   <div class="actions">
     <%= f.submit %>
