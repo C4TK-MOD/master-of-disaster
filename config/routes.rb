@@ -1,4 +1,9 @@
 Newapp::Application.routes.draw do
+  get "uitests/uitests"
+
+
+  match 'uitests' => 'uitests#uitests'
+  match 'uitests/first' => 'uitests#uitests'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -1,0 +1,2 @@
+module UitestsHelper
+end
