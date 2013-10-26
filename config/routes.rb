@@ -1,6 +1,6 @@
 Newapp::Application.routes.draw do
 
-  get "users/sign_up"
+  resources :users
 
   get   '/login', :to => 'sessions#new', :as => :login
   get '/logout', :to => 'sessions#destroy'

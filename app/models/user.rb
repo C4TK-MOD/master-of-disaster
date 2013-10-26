@@ -3,20 +3,25 @@
 # Table name: users
 #
 #  id              :integer          not null, primary key
+#  first_name      :string(255)
+#  last_name       :string(255)
 #  email           :string(255)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
-#  first_name      :string(255)
-#  last_name       :string(255)
-#  password_digest :string(255)      
 #  has_local_login :boolean
+#  last_logged_in  :string(255)
+#  zip_code        :integer
+#  level           :decimal(8, 2)
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :email, :first_name, :last_name, :password_digest
+  attr_accessible :email, :first_name, :last_name,     :last_logged_in, :zip_code, :level, :password, :password_confirmation
 
   has_many :authorizations
-  validates :email, :first_name, :last_name, :password_digest, :presence => true
+  validates :email, :first_name, :last_name, :presence => true
+  validates :email, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i }, :uniqueness => true
+
+
 
   def add_provider(auth_hash)
     # Check if the provider already exists, so we don't add it twice
