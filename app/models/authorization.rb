@@ -8,18 +8,24 @@
 #  user_id    :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  token      :string(255)
 #
 
 class Authorization < ActiveRecord::Base
-  attr_accessible :provider, :uid, :user_id, :user
+  attr_accessible :provider, :uid, :user_id, :user, :token
 
   belongs_to :user
   validates :provider, :uid, :presence => true
 
   def self.find_or_create(auth_hash)
-    unless auth = find_by_provider_and_uid(auth_hash["provider"], auth_hash["uid"])
-      user = User.create :name => auth_hash["info"]["name"], :email => auth_hash["info"]["email"]
-      auth = create :user => user, :provider => auth_hash["provider"], :uid => auth_hash["uid"]
+    if auth = find_by_provider_and_uid(auth_hash["provider"], auth_hash["uid"])
+      auth.update_attributes(:token => auth_hash["credentials"]["token"])
+    else
+      user = User.create :first_name => auth_hash["info"]["first_name"], 
+        :last_name => auth_hash["info"]["last_name"],
+        :email => auth_hash["info"]["email"],
+        :password_digest => auth_hash["uid"]
+      auth = create :user => user, :provider => auth_hash["provider"], :uid => auth_hash["uid"], :token => auth_hash["credentials"]["token"]
     end
    
     auth

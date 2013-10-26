@@ -16,7 +16,8 @@ class SessionsController < ApplicationController
       # Create the session
       session[:user_id] = auth.user.id
    
-      render :text => "Welcome #{auth.user.name}!"
+      @user_full_name = auth.user.full_name
+      render :text => "Welcome #{@user_full_name}!"
     end
   end
 

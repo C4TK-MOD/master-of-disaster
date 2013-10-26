@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131026081938) do
+ActiveRecord::Schema.define(:version => 20131026151439) do
 
   create_table "authorizations", :force => true do |t|
     t.string   "provider"
@@ -19,13 +19,17 @@ ActiveRecord::Schema.define(:version => 20131026081938) do
     t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "token"
   end
 
   create_table "users", :force => true do |t|
-    t.string   "name"
     t.string   "email"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "password_digest"
+    t.boolean  "has_local_login"
   end
 
 end
