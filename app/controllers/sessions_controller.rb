@@ -1,4 +1,8 @@
 class SessionsController < ApplicationController
+  
+  skip_before_filter :authenticate, :only => [:new, :create, :failure]
+
+  
   def new
   end
 
@@ -21,15 +25,12 @@ class SessionsController < ApplicationController
     end
   end
 
-  def failure
-  end
-
   def destroy
     session[:user_id] = nil
     render :text => "You've logged out!"
   end
 
   def failure
-    render :text => "Sorry, but you didn't allow access to our app!"
+    render :text => "Sorry, but you didn't allow access for our app!"
   end
 end

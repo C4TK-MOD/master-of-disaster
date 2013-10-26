@@ -28,4 +28,8 @@ class User < ActiveRecord::Base
   def full_name
     return first_name + " " + last_name
   end
+
+  def self.signed_in?
+    return session && session.has_key?(:user_id)
+  end
 end
