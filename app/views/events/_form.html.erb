@@ -21,11 +21,11 @@
   </div>
   <div class="field">
     <%= f.label :start_time %><br />
-    <%= f.datetime_select :start_time %>
+    <%= f.datetime_select :start_time, use_short_month: true, start_year: 2000 %>
   </div>
   <div class="field">
     <%= f.label :end_time %><br />
-    <%= f.datetime_select :end_time %>
+    <%= f.datetime_select :end_time, use_short_month: true %>
   </div>
   <div class="field">
     <%= f.label :city %><br />
@@ -33,7 +33,7 @@
   </div>
   <div class="field">
     <%= f.label :state %><br />
-    <%= f.text_field :state %>
+    <%= f.select :state, us_states %>
   </div>
   <div class="field">
     <%= f.label :zip %><br />
