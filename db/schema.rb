@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131026151439) do
+ActiveRecord::Schema.define(:version => 20131026183508) do
 
   create_table "authorizations", :force => true do |t|
     t.string   "provider"
@@ -20,6 +20,47 @@ ActiveRecord::Schema.define(:version => 20131026151439) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "token"
+  end
+
+  create_table "events", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "owned_assets", :force => true do |t|
+    t.integer  "physical_asset_id"
+    t.integer  "user_id"
+    t.integer  "quantity"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  create_table "physical_assets", :force => true do |t|
+    t.string   "name"
+    t.integer  "category_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "skill_assertions", :force => true do |t|
+    t.integer  "skill_id"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "skills", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "users", :force => true do |t|
