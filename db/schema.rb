@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131026183508) do
+ActiveRecord::Schema.define(:version => 20131026192111) do
 
   create_table "authorizations", :force => true do |t|
     t.string   "provider"
@@ -20,6 +20,22 @@ ActiveRecord::Schema.define(:version => 20131026183508) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "token"
+  end
+
+  create_table "categories", :force => true do |t|
+    t.string   "name"
+    t.string   "area"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "event_participations", :force => true do |t|
+    t.integer  "event_id"
+    t.integer  "user_id"
+    t.integer  "time_in_minutes"
+    t.boolean  "is_verified"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "events", :force => true do |t|

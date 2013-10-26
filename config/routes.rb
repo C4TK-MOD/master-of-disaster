@@ -1,6 +1,8 @@
 Newapp::Application.routes.draw do
 
-  get "users/sign_up"
+  resources :categories
+
+
   resources :events
 
 
@@ -10,6 +12,7 @@ Newapp::Application.routes.draw do
   resources :physical_assets
 
 
+  get "users/sign_up"
   get   '/login', :to => 'sessions#new', :as => :login
   get '/logout', :to => 'sessions#destroy'
   match '/auth/:provider/callback', :to => 'sessions#create'

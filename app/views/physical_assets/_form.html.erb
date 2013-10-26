@@ -17,7 +17,7 @@
   </div>
   <div class="field">
     <%= f.label :category_id %><br />
-    <%= f.number_field :category_id %>
+    <%= f.select :category_id, physical_asset_category_selections %>
   </div>
   <div class="actions">
     <%= f.submit %>
