@@ -16,7 +16,16 @@ class User < ActiveRecord::Base
   attr_accessible :email, :first_name, :last_name, :password_digest
 
   has_many :authorizations
+
+  has_many :skill_assertions
+  has_many :skills, through: :skill_assertions
+
+  has_many :certification_assertions
+  has_many :certifications, through: :certification_assertions
+
   validates :email, :first_name, :last_name, :password_digest, :presence => true
+
+  accepts_nested_attributes_for :skill_assertions
 
   def add_provider(auth_hash)
     # Check if the provider already exists, so we don't add it twice

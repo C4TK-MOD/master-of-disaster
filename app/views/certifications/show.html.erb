@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @certification.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @certification.description %>
+</p>
+
+<p>
+  <b>Time in minutes:</b>
+  <%= @certification.time_in_minutes %>
+</p>
+
+<p>
+  <b>Fee:</b>
+  <%= @certification.fee %>
+</p>
+
+<p>
+  <b>Path:</b>
+  <%= @certification.path_id %>
+</p>
+
+<p>
+  <b>Prerequisite:</b>
+  <%= @certification.prerequisite_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_certification_path(@certification) %> |
+<%= link_to 'Back', certifications_path %>

@@ -1,5 +1,8 @@
 Newapp::Application.routes.draw do
 
+  resources :certifications
+
+
   resources :users
 
 
