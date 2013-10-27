@@ -25,6 +25,21 @@
   </div>
 
 <h3>Skills</h3>
+<div class="field">
+  <fieldset class="choices">
+    <ol class="choices-group">
+<% skills_by_alphabetical_order.each do |skill| %>
+<% selected = @user.skill_assertions.detect{|a|a.skill_id == skill.id} %>
+      <li class="choice">
+        <label for="user_skill_ids_<%= skill.id %>">
+          <input id="user_skill_ids_<%= skill.id %>" name="user[skill_ids][]" type="checkbox" value="<%= skill.id %>" <%= 'checked="true"' if selected %>>
+            <%= skill.name %>
+        </label>
+      </li>
+    <% end %>
+  </fieldset>
+</div>
+
 
   <div class="actions">
     <%= f.submit %>

@@ -13,7 +13,7 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :email, :first_name, :last_name, :password_digest
+  attr_accessible :email, :first_name, :last_name, :password_digest, :skill_ids
 
   has_many :authorizations
 
@@ -25,7 +25,8 @@ class User < ActiveRecord::Base
 
   validates :email, :first_name, :last_name, :password_digest, :presence => true
 
-  accepts_nested_attributes_for :skill_assertions
+  accepts_nested_attributes_for :skill_assertions, :allow_destroy => true,
+     :reject_if => proc { |attrs| attrs['_id'].blank? && attrs['_destroy'] == "1"}
 
   def add_provider(auth_hash)
     # Check if the provider already exists, so we don't add it twice
