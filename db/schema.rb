@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131026210629) do
+ActiveRecord::Schema.define(:version => 20131026225526) do
 
   create_table "authorizations", :force => true do |t|
     t.string   "provider"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(:version => 20131026210629) do
     t.string   "last_logged_in"
     t.integer  "zip_code"
     t.decimal  "level",           :precision => 8, :scale => 2
+    t.integer  "phone"
   end
 
 end
