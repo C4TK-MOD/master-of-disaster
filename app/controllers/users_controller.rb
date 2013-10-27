@@ -58,6 +58,18 @@ class UsersController < ApplicationController
     else
       @user = current_user
     end
+    
+    @certifications = @user.certifications.all
+    @certifications.each do |cert|
+      cert.belongs_to_user = true
+    end
+
+    @certifications = @certifications.concat(Certification.where('id not in (?)',@certifications))
+    respond_to do |format|
+      format.html
+      # format.json { render json: @certifications.to_json }
+      format.json { render json: @certifications.map{|p| p.full_display}.to_json }
+    end
   end
 
   # POST /users
