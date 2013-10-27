@@ -1,5 +1,7 @@
 Newapp::Application.routes.draw do
 
+  get "plivo/send_msg"
+
   resources :users
 
   get   '/login', :to => 'sessions#new', :as => :login

@@ -47,6 +47,7 @@ GEM
       multipart-post (~> 1.2.0)
     hashie (2.0.5)
     hike (1.2.3)
+    htmlentities (4.3.1)
     httpauth (0.2.0)
     i18n (0.6.1)
     journey (1.0.4)
@@ -86,6 +87,11 @@ GEM
       bcrypt-ruby (~> 3.0)
       omniauth (~> 1.0)
       rails (~> 3.2.1)
+    plivo (0.3.8)
+      builder (>= 2.1.2)
+      htmlentities (>= 4.3.1)
+      json (>= 1.6.6)
+      rest-client (>= 1.6.7)
     polyglot (0.3.3)
     rack (1.4.5)
     rack-cache (1.2)
@@ -113,6 +119,8 @@ GEM
     rdoc (3.12.2)
       json (~> 1.4)
     ref (1.0.5)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
     sass (3.2.12)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
@@ -154,6 +162,7 @@ DEPENDENCIES
   omniauth
   omniauth-facebook
   omniauth-password
+  plivo
   rails (= 3.2.13)
   sass-rails (~> 3.2.3)
   sqlite3
