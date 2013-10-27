@@ -35,17 +35,6 @@ Newapp::Application.routes.draw do
   match '/auth/:provider/callback', :to => 'sessions#create'
   match '/auth/failure', :to => 'sessions#failure'
 
-  get "uitests/uitests"
-
-
-  match 'uitests' => 'uitests#index'
-  match 'uitests/index' => 'uitests#index'
-  match 'uitests/splashscreen' => 'uitests#splashscreen'
-  match 'uitests/home' => 'uitests#home'
-  match 'uitests/profile' => 'uitests#profile'
-  match 'uitests/first' => 'uitests#uitests'
-  match 'uitests/tree/' => 'uitests#tree'
-  match 'uitests/tree/:id' => 'uitests#tree'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
