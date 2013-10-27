@@ -42,43 +42,6 @@
     </div>
   <% end %>
 
-  
-<h3>Skills</h3>
-<div class="field">
-  <fieldset class="choices">
-<% skills_by_alphabetical_order.each do |skill| %>
-<% selected = @user.skill_assertions.detect{|a|a.skill_id == skill.id} %>
-      <li class="choice">
-        <label for="user_skill_ids_<%= skill.id %>">
-          <input id="user_skill_ids_<%= skill.id %>" name="user[skill_ids][]" type="checkbox" value="<%= skill.id %>" <%= 'checked="true"' if selected %>>
-            <%= skill.name %>
-        </label>
-      </li>
-    <% end %>
-  </fieldset>
-</div>
-
-<h3>Assets</h3>
-<div class="field">
-<% physical_asset_categories.each do |category| %>
-  <fieldset class="choices">
-    <legend class="label">
-      <label><%=category.name%></label>
-    </legend>
-<ul>
-<% PhysicalAsset.find_all_by_category_id(category.id).each do |physical_asset| %>
-<% selected = @user.owned_assets.detect{|a|a.physical_asset_id == physical_asset.id} %>
-      <li class="choice">
-        <label for="user_physical_asset_ids_<%= physical_asset.id %>">
-          <input id="user_physical_asset_ids_<%= physical_asset.id %>" name="user[physical_asset_ids][]" type="checkbox" value="<%= physical_asset.id %>" <%= 'checked="true"' if selected %>>
-            <%= physical_asset.name %>
-        </label>
-      </li>
-    <% end %>
-</ul>
-  </fieldset>
-<% end %>
-</div>
 
   <div class="actions">
     <%= f.submit "Next", class: "btn btn-large btn-success", style: "width: 240px; bottom: 10px;" %>
