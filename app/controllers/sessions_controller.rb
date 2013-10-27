@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
       if !@user.valid?
         redirect_to edit_user_path @user
       else
-        render :text => "You can now login using #{auth_hash["provider"].capitalize} too!"
+        redirect_to :home
       end
 
     elsif auth = Authorization.find_or_create(auth_hash)
@@ -29,7 +29,7 @@ class SessionsController < ApplicationController
       if @user.finish_setup? || !@user.valid?
         redirect_to edit_user_path @user
       else
-        render :text => "Welcome #{@user.full_name}!"
+        redirect_to :home
       end
 
     else
@@ -39,7 +39,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    render :text => "You've logged out!"
+    redirect_to :login
   end
 
   def failure
