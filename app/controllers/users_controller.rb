@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+require 'plivo_messenger'
 
  skip_before_filter :authenticate, :only => [:new, :create]
  
@@ -70,7 +71,7 @@ class UsersController < ApplicationController
     end
     respond_to do |format|
       format.html
-      format.json { render json: @certifications.map{|p| p.full_display}.to_json }
+      format.json { render json: {post_uri: "/users/#{@user.id}/add_certification", certs: (@certifications.map{|p| p.full_display})}.to_json }
     end
   end
 
@@ -111,6 +112,7 @@ class UsersController < ApplicationController
         format.json { render json: @user, status: :unprocessable_entity }
       elsif !@user.certifications.include?(cert)
         @user.certifications << cert
+        PlivoMessenger.send_msg(@user.phone, "You signed up for #{cert.name}!")
         format.html { redirect_to @user, notice: "User was assigned certification #{cert.name}." }
         format.json { head :no_content }
       else

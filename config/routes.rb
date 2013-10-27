@@ -27,7 +27,7 @@ Newapp::Application.routes.draw do
 
   resources :users do
     member do
-      put :add_certification
+      post :add_certification
     end
   end
 
