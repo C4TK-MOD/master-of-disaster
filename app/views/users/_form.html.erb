@@ -11,22 +11,25 @@
     </div>
   <% end %>
 
-  <div>
-    <%= image_tag(@user.image_url, class: "") %>
+  <div style="width: 100%">
+    <div style="margin-left: auto; margin-right: auto; width: 180px; height: 180px;">
+      <%= image_tag(@user.image_url, class: "img-circle") %>
+    </div>
   </div>
-
-  <h1>Welcome, <%= @user.first_name %>!</h1>
-  <div>
+<br />
+<div style="text-align: center;">
+  <h2>Welcome, <%= @user.first_name %>!</h2>
+  <div style="display: none;">
     <%= label_tag :email %><br />
     <%= f.text_field :email %>
   </div>
   <div class="field">
-    <%= label_tag :phone %><br />
-    <%= f.text_field :phone %>
+    <!--<%= label_tag :phone %><br />-->
+    <%= f.text_field :phone, :placeholder => "Phone Number (5125551234)", :required => true, :pattern => "[0-9]{10}" %>
   </div>
   <div class="field">
-    <%= label_tag :zip_code %><br />
-    <%= f.text_field :zip_code %>
+    <!--<%= label_tag :zip_code %><br />-->
+    <%= f.text_field :zip_code, :placeholder => "Zipcode", :required => true, :pattern => "[0-9]{5}" %>
   </div>
   <% if :new_view == locals[:operation] %>
     <div class="field">
@@ -40,6 +43,7 @@
   <% end %>
 
   <div class="actions">
-    <%= f.submit "Help Out!" %>
+    <%= f.submit "Next", class: "btn btn-large btn-success", style: "width: 240px; bottom: 10px;" %>
   </div>
+</div>
 <% end %>
