@@ -69,6 +69,41 @@ class AddDefaultObjects < ActiveRecord::Migration
     attrs[:path_id] = p3.id
     attrs[:prerequisite_id] = c10.id
     c11 = Certification.create(attrs)
+
+    attrs = {}
+    attrs[:name] = "Cooking (Group)"
+    attrs[:description] = "Ability to provide meals for at least 25 people"
+    s1 = Skill.create(attrs)
+    attrs[:name] = "Demolition"
+    attrs[:description] = "Ability to demolish structures following a disaster"
+    s2 = Skill.create(attrs)
+    attrs[:name] = "Framing Carpentry"
+    attrs[:description] = "Ability to frame new structures, but not necessarily at the level of a finish carpenter"
+    s3 = Skill.create(attrs)
+
+    attrs = {}
+    attrs[:name] = "Construction"
+    attrs[:area] = "Physical Assets"
+    cat1 = Category.create(attrs)
+    attrs = {}
+    attrs[:name] = "Transportation"
+    attrs[:area] = "Physical Assets"
+    cat2 = Category.create(attrs)
+
+    attrs = {}
+    attrs[:name] = "Chain Saw"
+    attrs[:category_id] = cat1.id
+    pa1 = PhysicalAsset.create(attrs)
+    attrs[:name] = "Generator"
+    attrs[:category_id] = cat1.id
+    pa2 = PhysicalAsset.create(attrs)
+    attrs[:name] = "Truck"
+    attrs[:category_id] = cat2.id
+    pa3 = PhysicalAsset.create(attrs)
+    attrs[:name] = "Bus"
+    attrs[:category_id] = cat2.id
+    pa4 = PhysicalAsset.create(attrs)
+
   end
 
   def down

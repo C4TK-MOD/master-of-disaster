@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131026233810) do
+ActiveRecord::Schema.define(:version => 20131027024935) do
 
   create_table "authorizations", :force => true do |t|
     t.string   "provider"
@@ -73,9 +73,9 @@ ActiveRecord::Schema.define(:version => 20131026233810) do
   create_table "owned_assets", :force => true do |t|
     t.integer  "physical_asset_id"
     t.integer  "user_id"
-    t.integer  "quantity"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.integer  "quantity",          :default => 1
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
   end
 
   create_table "paths", :force => true do |t|
@@ -110,10 +110,11 @@ ActiveRecord::Schema.define(:version => 20131026233810) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
     t.string   "password_digest"
     t.boolean  "has_local_login"
+    t.boolean  "is_admin",        :default => false
   end
 
 end

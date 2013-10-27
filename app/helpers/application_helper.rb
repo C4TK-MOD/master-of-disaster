@@ -55,4 +55,14 @@ module ApplicationHelper
         ['Wyoming', 'WY']
       ]
   end
+
+  def current_user
+    @current_user ||= if session && session.has_key?(:user_id)
+      User.find_by_id(session[:user_id])
+    end
+  end
+
+  def admin?
+    current_user && current_user.is_admin?
+  end
 end

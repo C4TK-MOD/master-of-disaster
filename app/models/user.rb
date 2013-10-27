@@ -13,7 +13,7 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :email, :first_name, :last_name, :password_digest, :skill_ids
+  attr_accessible :email, :first_name, :last_name, :password_digest, :skill_ids, :physical_asset_ids
 
   has_many :authorizations
 
@@ -22,6 +22,9 @@ class User < ActiveRecord::Base
 
   has_many :certification_assertions
   has_many :certifications, through: :certification_assertions
+
+  has_many :owned_assets
+  has_many :physical_assets, through: :owned_assets
 
   validates :email, :first_name, :last_name, :password_digest, :presence => true
 
