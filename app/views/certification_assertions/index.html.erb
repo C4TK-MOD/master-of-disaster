@@ -18,7 +18,7 @@
       <td><%= link_to pending.user.full_name, edit_certification_assertion_path(pending) %></td>
       <td><%= pending.user.email %></td>
       <td><%= link_to 'Verify', edit_certification_assertion_path(pending) %></td>
-      <td><%= link_to 'Destroy', pending, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td><%= link_to 'Remove', pending, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>
   <% end %>
 <% end %>
