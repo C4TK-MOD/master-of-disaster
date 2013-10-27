@@ -15,19 +15,23 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :email, :first_name, :last_name,     :last_logged_in, :zip_code, :level, :password, :password_confirmation
+
+  attr_accessible :email, :first_name, :last_name, :last_logged_in, :zip_code, :level, :password, :password_confirmation, :finish_setup, :phone
+  attr_accessor :finish_setup
 
   has_many :authorizations
   validates :email, :first_name, :last_name, :presence => true
   validates :email, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i }, :uniqueness => true
+  validates :zip_code, :phone, :presence => true, :unless => :finish_setup?
 
 
 
   def add_provider(auth_hash)
     # Check if the provider already exists, so we don't add it twice
-    unless authorizations.find_by_provider_and_uid(auth_hash["provider"], auth_hash["uid"])
+    unless user = authorizations.find_by_provider_and_uid(auth_hash["provider"], auth_hash["uid"])
       Authorization.create :user => self, :provider => auth_hash["provider"], :uid => auth_hash["uid"]
     end
+    return user
   end
 
   def full_name
@@ -36,5 +40,9 @@ class User < ActiveRecord::Base
 
   def self.signed_in?
     return session && session.has_key?(:user_id)
+  end
+
+  def finish_setup?
+    return @finish_setup
   end
 end

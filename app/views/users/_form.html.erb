@@ -1,3 +1,5 @@
+<%= debug @user.inspect %>
+
 <%= form_for(@user) do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
@@ -26,15 +28,15 @@
     </div>
     <div class="field">
       <%= label_tag :first_name %><br />
-      <%= f.password_field :first_name %>
+      <%= f.text_field :first_name %>
     </div>
     <div class="field">
       <%= label_tag :last_name %><br />
-      <%= f.password_field :last_name %>
+      <%= f.text_field :last_name %>
     </div>
     <div class="field">
       <%= label_tag :zip_code %><br />
-      <%= f.password_field :zip_code %>
+      <%= f.text_field :zip_code %>
     </div>
     <%= f.submit %>
   </div>
