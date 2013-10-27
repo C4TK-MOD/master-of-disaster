@@ -2,15 +2,24 @@ Newapp::Application.routes.draw do
   
   get "plivo/send_msg"
 
+  get "/event_participations", to: "event_participations#index", as: :event_participations
+  get "event_participations/index"
+  get "event_participations/edit"
+  get "event_participations/update"
+
   get "admin/index"
   get "/admin", :to => "admin#index", :as => :admin
   get "/home", :to => "events#index", :as => :home
   get "/profile", :to => "users#profile", :as => :profile
+  get "/certifications", :to => "users#certifications", :as => :certifications
 
   resources :paths
 
 
   resources :certifications
+
+
+  resources :certification_assertions
 
 
   resources :users

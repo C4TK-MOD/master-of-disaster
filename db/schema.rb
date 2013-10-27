@@ -32,10 +32,10 @@ ActiveRecord::Schema.define(:version => 20131027024935) do
   create_table "certification_assertions", :force => true do |t|
     t.integer  "certification_id"
     t.integer  "user_id"
-    t.boolean  "is_verified"
+    t.boolean  "is_verified",       :default => false
     t.datetime "verification_date"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
   end
 
   create_table "certifications", :force => true do |t|

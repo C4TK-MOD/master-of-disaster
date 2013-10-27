@@ -20,4 +20,10 @@ class ApplicationController < ActionController::Base
   end
 
   helper_method :admin?
+
+  def site_url
+    request.url.gsub(request.fullpath, "")
+  end
+
+  helper_method :site_url
 end
