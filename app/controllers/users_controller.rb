@@ -63,12 +63,23 @@ class UsersController < ApplicationController
     @certifications.each do |cert|
       cert.belongs_to_user = true
     end
-
-    @certifications = @certifications.concat(Certification.where('id not in (?)',@certifications))
+    if @certifications.length == 0
+      @certifications = Certification.all
+    else
+      @certifications = @certifications.concat(Certification.where('id not in (?)',@certifications))
+    end
     respond_to do |format|
       format.html
-      # format.json { render json: @certifications.to_json }
       format.json { render json: @certifications.map{|p| p.full_display}.to_json }
+    end
+  end
+
+  def assets
+    redirect_to home_path unless current_user
+    @user = current_user
+
+    respond_to do |format|
+      format.html
     end
   end
 
@@ -92,6 +103,7 @@ class UsersController < ApplicationController
   # PUT /users/1.json
   def update
     @user = User.find(params[:id])
+    @params = params[:user][:assets]
 
     respond_to do |format|
       if @user.update_attributes(params[:user])

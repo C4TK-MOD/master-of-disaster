@@ -13,6 +13,7 @@ Newapp::Application.routes.draw do
   get "/events", :to => "events#index", :as => :home
   get "/profile", :to => "users#profile", :as => :profile
   get "/my_certifications", :to => "users#certifications", :as => :my_certifications
+  get "/my_assets", :to => "users#assets", :as => :my_assets
 
 
   resources :paths
