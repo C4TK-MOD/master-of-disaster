@@ -18,8 +18,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :first_name, :last_name, :last_logged_in, :zip_code, :level,
     :password, :password_confirmation, :finish_setup, :phone, :is_local, :skill_ids,
     :physical_asset_ids, :certification_ids, :image_url
-  attr_accessor :finish_setup, :is_local, :skill_ids, :physical_asset_ids,
-    :password, :password_confirmation
+  attr_accessor :finish_setup, :is_local, :password, :password_confirmation
 
   has_many :authorizations
   validates :email, :first_name, :last_name, :presence => true
