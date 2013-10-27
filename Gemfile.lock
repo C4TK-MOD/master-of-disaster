@@ -87,6 +87,7 @@ GEM
       bcrypt-ruby (~> 3.0)
       omniauth (~> 1.0)
       rails (~> 3.2.1)
+    pg (0.17.0)
     plivo (0.3.8)
       builder (>= 2.1.2)
       htmlentities (>= 4.3.1)
@@ -162,6 +163,7 @@ DEPENDENCIES
   omniauth
   omniauth-facebook
   omniauth-password
+  pg
   plivo
   rails (= 3.2.13)
   sass-rails (~> 3.2.3)
