@@ -31,14 +31,16 @@
     <%= label_tag :zip_code %><br />
     <%= f.text_field :zip_code %>
   </div>
-  <div class="field">
-    <%= label_tag :password %><br />
-    <%= f.password_field :password %>
-  </div>
-  <div class="field">
-    <%= label_tag :password_confirmation %><br />
-    <%= f.password_field :password_confirmation %>
-  </div>
+  <% if :new_view == locals[:operation] %>
+    <div class="field">
+      <%= label_tag :password %><br />
+      <%= f.password_field :password %>
+    </div>
+    <div class="field">
+      <%= label_tag :password_confirmation %><br />
+      <%= f.password_field :password_confirmation %>
+    </div>
+  <% end %>
 
 <h3>Skills</h3>
 <div class="field">
