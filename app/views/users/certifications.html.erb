@@ -1,5 +1,5 @@
 <%= form_for(@user) do |f| %>
-
+<%= f.hidden_field :finish_setup, :value => true %>
 <h2>
   <%= @user.full_name %>
 </h2>

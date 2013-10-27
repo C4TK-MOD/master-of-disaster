@@ -1,4 +1,6 @@
 Newapp::Application.routes.draw do
+  
+  get "plivo/send_msg"
 
   get "/event_participations", to: "event_participations#index", as: :event_participations
   get "event_participations/index"
@@ -36,6 +38,7 @@ Newapp::Application.routes.draw do
 
 
   get "users/sign_up"
+
   get   '/login', :to => 'sessions#new', :as => :login
   get '/logout', :to => 'sessions#destroy'
   match '/auth/:provider/callback', :to => 'sessions#create'

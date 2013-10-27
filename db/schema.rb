@@ -110,11 +110,13 @@ ActiveRecord::Schema.define(:version => 20131027024935) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
-    t.string   "password_digest"
-    t.boolean  "has_local_login"
-    t.boolean  "is_admin",        :default => false
+    t.datetime "created_at",                                                      :null => false
+    t.datetime "updated_at",                                                      :null => false
+    t.string   "last_logged_in"
+    t.integer  "zip_code"
+    t.decimal  "level",          :precision => 8, :scale => 2
+    t.integer  "phone"
+    t.boolean  "is_admin",                                     :default => false
   end
 
 end
