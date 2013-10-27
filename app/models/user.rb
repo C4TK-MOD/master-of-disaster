@@ -8,7 +8,6 @@
 #  email           :string(255)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
-#  has_local_login :boolean
 #  last_logged_in  :string(255)
 #  zip_code        :integer
 #  level           :decimal(8, 2)
@@ -16,13 +15,15 @@
 
 class User < ActiveRecord::Base
 
-  attr_accessible :email, :first_name, :last_name, :last_logged_in, :zip_code, :level, :password, :password_confirmation, :finish_setup, :phone
-  attr_accessor :finish_setup
+  attr_accessible :email, :first_name, :last_name, :last_logged_in, :zip_code, :level,
+    :password, :password_confirmation, :finish_setup, :phone
+  attr_accessor :finish_setup, :password, :password_confirmation
 
   has_many :authorizations
   validates :email, :first_name, :last_name, :presence => true
   validates :email, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i }, :uniqueness => true
-  validates :zip_code, :phone, :presence => true, :unless => :finish_setup?
+  validates :password, :zip_code, :phone, :presence => true, :unless => :finish_setup?
+  validates_confirmation_of :password, :unless => :finish_setup?
 
 
 
