@@ -1,3 +1,71 @@
+<div class="accordion" id="accordion2">
+</div>
+<script>
+  function findWithIn (id, tree, childToAdd) {
+    var jlength = tree.length;
+    for (var j = 0; j < length; j++) {
+      console.log(tree[j].length);
+      if (tree[j].length > 0) {
+        var children = findWithIn(id, tree[j], childToAdd);
+        if (children.length) {}
+      } else {
+
+      }
+    }
+    return tree;
+  }
+  $(document).ready(function() {
+    $.ajax({
+      url: '/my_certifications.json',
+      data: {},
+      success: function (data, textStatus, jqXHR) {
+        certArray = [];
+        var length = data.length;
+        for (var i = 0; i < length; i++) {
+          console.log(data[i]);
+          if (data[i].prerequisite_id != null) {
+            if($("#accordion-content-id" + data[i].prerequisite_id).length == 0) {
+              var add = "<div class=\"accordion-group\"><div class=\"accordion-heading\"><span><a class=\"accordion-toggle\" data-toggle=\"collapse\" data-parent=\"#accordion2\" href=\"#collapse"+data[i].id+"\">"+data[i].name+"";
+              if (data[i].belongs_to_user) {
+                add += "<i class=\"pull-right icon-ok-sign\"></i>";
+              }
+              add += "</a></span></div><div id=\"collapse"+data[i].id+"\" class=\"accordion-body collapse\"><div class=\"accordion-inner\">"+data[i].description;
+              if (!data[i].belongs_to_user) {
+                add += "<br /><br /><div style=\"text-align:center;\"><a class=\"btn btn-success\">Schedule Training</a></div><br />"
+              }
+              add += "</div></div></div>";
+              $("#accordion2").append(add);
+            } else {
+              var add = "<div class=\"accordion-group\"><div class=\"accordion-heading\"><span><a class=\"accordion-toggle\" data-toggle=\"collapse\" data-parent=\"#accordion-content-id" + data[i].id + "\" href=\"#collapse"+data[i].id+"\">"+data[i].name+"";
+              if (data[i].belongs_to_user) {
+                add += "<i class=\"pull-right icon-ok-sign\"></i>";
+              }
+              add += "</a></span></div><div id=\"collapse"+data[i].id+"\" class=\"accordion-body collapse\"><div class=\"accordion-inner\" id=\"accordion-content-id"+data[i].id+"\">"+data[i].description;
+              if (!data[i].belongs_to_user) {
+                add += "<br /><br /><div style=\"text-align:center;\"><a class=\"btn btn-success\">Schedule Training</a></div><br />"
+              }
+              add += "</div></div></div>";
+              $("#accordion-content-id" + data[i].prerequisite_id).append(add);
+            }
+          } else {
+              var add = "<div class=\"accordion-group\"><div class=\"accordion-heading\"><span><a class=\"accordion-toggle\" data-toggle=\"collapse\" data-parent=\"#accordion2\" href=\"#collapse"+data[i].id+"\">"+data[i].name+"";
+              if (data[i].belongs_to_user) {
+                add += "<i class=\"pull-right icon-ok-sign\"></i>";
+              }
+              add += "</a></span></div><div id=\"collapse"+data[i].id+"\" class=\"accordion-body collapse\"><div class=\"accordion-inner\" id=\"accordion-content-id"+data[i].id+"\">"+data[i].description;
+              if (!data[i].belongs_to_user) {
+                add += "<br /><br /><div style=\"text-align:center;\"><a class=\"btn btn-success\">Schedule Training</a></div><br />"
+              }
+              add += "</div></div></div>";
+              $("#accordion2").append(add);
+          }
+        }
+      },
+      dataType: 'json'
+    });
+  });
+</script>
+<div style="display: none;">
 <%= form_for(@user) do |f| %>
 <%= f.hidden_field :finish_setup, :value => true %>
 <h2>
@@ -6,7 +74,6 @@
 <h3>
   <%= @user.email %>
 </h3>
-
 <h3>Certifications</h3>
 <div class="field">
 <% paths_by_alpha.each do |path| %>
@@ -31,5 +98,6 @@
 
 <div class="actions">
   <%= f.submit %>
+</div>
 </div>
 <% end %>
