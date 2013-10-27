@@ -21,7 +21,7 @@ class CertificationAssertionsController < ApplicationController
       @cert.is_verified = true
     end
     if @cert.save
-      if (phone_num = @cert.user.phone)
+      if (phone_num = @cert.user.text_notification_number)
         PlivoMessenger.send_msg(phone_num, "Your certification has been verified. Please visit #{site_url}/certifications to view.")
       end
       redirect_to :certification_assertions

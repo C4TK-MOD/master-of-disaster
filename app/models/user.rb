@@ -53,6 +53,15 @@ class User < ActiveRecord::Base
     return first_name + " " + last_name
   end
 
+  def text_notification_number
+    # TODO: Add a check for text notification opt-in. For now, just send.
+    stripped_phone_number = phone.gsub(/[ \-\(\)]*/, '')
+    if stripped_phone_number.length == 9
+      stripped_phone_number = "1#{stripped_phone_number}"
+    end
+    stripped_phone_number
+  end
+
   def self.signed_in?
     return session && session.has_key?(:user_id)
   end
