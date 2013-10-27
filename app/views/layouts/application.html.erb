@@ -49,7 +49,18 @@
           <a class="brand" href="#">Newapp</a>
           <div class="container nav-collapse">
             <ul class="nav">
+<% if current_user %>
+              <li><%= link_to "Home", "/home"  %></li>
+              <li><%= link_to "Profile", "/profile"  %></li>
+<% else %>
               <li><%= link_to "Login", "/login"  %></li>
+<% end %>
+<% if admin? %>
+              <li><%= link_to "Admin", "/admin"  %></li>
+<% end %>
+<% if current_user %>
+              <li><%= link_to "Logout", "/logout"  %></li>
+<% end %>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -64,9 +75,9 @@
           </div>
         </div><!--/row-->
 
-      <footer>
+      <!-- <footer>
         <p>&copy; Company 2013</p>
-      </footer>
+      </footer> -->
 
     </div> <!-- /container -->
 

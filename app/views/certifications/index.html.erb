@@ -1,0 +1,33 @@
+<h1>Listing certifications</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Hours</th>
+    <th>Fee</th>
+    <th>Path</th>
+    <th>Prerequisite</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @certifications.each do |certification| %>
+  <tr>
+    <td><%= certification.name %></td>
+    <td><%= certification.description %></td>
+    <td><%= certification.time_in_minutes %></td>
+    <td><%= number_to_currency(certification.fee) %></td>
+    <td><%= certification.path.name %></td>
+    <td><%= certification.prerequisite.try(:name) %></td>
+    <td><%= link_to 'Show', certification %></td>
+    <td><%= link_to 'Edit', edit_certification_path(certification) %></td>
+    <td><%= link_to 'Destroy', certification, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Certification', new_certification_path %>

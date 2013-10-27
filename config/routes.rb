@@ -1,8 +1,34 @@
 Newapp::Application.routes.draw do
-
+  
   get "plivo/send_msg"
 
+  get "admin/index"
+  get "/admin", :to => "admin#index", :as => :admin
+  get "/home", :to => "events#index", :as => :home
+  get "/profile", :to => "users#profile", :as => :profile
+
+  resources :paths
+
+
+  resources :certifications
+
+
   resources :users
+
+
+  resources :categories
+
+
+  resources :events
+
+
+  resources :skills
+
+
+  resources :physical_assets
+
+
+  get "users/sign_up"
 
   get   '/login', :to => 'sessions#new', :as => :login
   get '/logout', :to => 'sessions#destroy'

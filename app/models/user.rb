@@ -17,15 +17,28 @@ class User < ActiveRecord::Base
 
   attr_accessible :email, :first_name, :last_name, :last_logged_in, :zip_code, :level,
     :password, :password_confirmation, :finish_setup, :phone
-  attr_accessor :finish_setup, :password, :password_confirmation
+  attr_accessor :finish_setup, :skill_ids, :physical_asset_ids,
+    :password, :password_confirmation
 
   has_many :authorizations
   validates :email, :first_name, :last_name, :presence => true
   validates :email, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i }, :uniqueness => true
-  validates :password, :zip_code, :phone, :presence => true, :unless => :finish_setup?
-  validates_confirmation_of :password, :unless => :finish_setup?
+  validates :zip_code, :phone, :presence => true, :unless => :finish_setup?
+  validate :password, :unless => :finish_setup? || :is_remote_login?
+  validates_confirmation_of :password, :unless => :finish_setup? || :is_remote_login?
 
 
+  has_many :skill_assertions
+  has_many :skills, through: :skill_assertions
+
+  has_many :certification_assertions
+  has_many :certifications, through: :certification_assertions
+
+  has_many :owned_assets
+  has_many :physical_assets, through: :owned_assets
+
+  accepts_nested_attributes_for :skill_assertions, :allow_destroy => true,
+     :reject_if => proc { |attrs| attrs['_id'].blank? && attrs['_destroy'] == "1"}
 
   def add_provider(auth_hash)
     # Check if the provider already exists, so we don't add it twice
@@ -45,5 +58,9 @@ class User < ActiveRecord::Base
 
   def finish_setup?
     return @finish_setup
+  end
+
+  def is_remote_login?
+    return self.authorizations.count != 0 && self.authorizations.find_by_provider("facebook")
   end
 end
