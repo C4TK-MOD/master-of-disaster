@@ -1,0 +1,27 @@
+<h1>Certifications Pending Approval</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @pending_certs.each do |cert, pendings| %>
+  <tr colspan=6>
+    <td><%=cert.name%></td>
+  </tr>
+  <% pendings.each do |pending| %>
+    <tr>
+      <td><%= link_to pending.user.full_name, edit_certification_assertion_path(pending) %></td>
+      <td><%= pending.user.email %></td>
+      <td><%= link_to 'Verify', edit_certification_assertion_path(pending) %></td>
+      <td><%= link_to 'Destroy', pending, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+<% end %>
+</table>
+
+<br />

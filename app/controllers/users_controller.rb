@@ -51,6 +51,15 @@ class UsersController < ApplicationController
     render action: "show"
   end
 
+  def certifications
+    redirect_to home_path unless current_user
+    if params[:id]
+      @user = User.find(params[:id])
+    else
+      @user = current_user
+    end
+  end
+
   # POST /users
   # POST /users.json
   def create

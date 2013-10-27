@@ -1,0 +1,26 @@
+<%= form_for(@cert) do |f| %>
+  <% if @cert.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@cert.errors.count, "error") %> prohibited this pending certification from being saved:</h2>
+
+      <ul>
+      <% @cert.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= @cert.user.full_name %><br />
+  </div>
+  <div class="field">
+    <%= @cert.certification.name %><br />
+  </div>
+  <div class="actions">
+    <%= f.submit "Verify" %>
+  </div>
+  <div class="actions">
+    <%= link_to "Cancel", :certification_assertions %>
+  </div>
+<% end %>

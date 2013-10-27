@@ -3,7 +3,7 @@ class CreateCertificationAssertions < ActiveRecord::Migration
     create_table :certification_assertions do |t|
       t.integer :certification_id
       t.integer :user_id
-      t.boolean :is_verified
+      t.boolean :is_verified, default: false
       t.datetime :verification_date
 
       t.timestamps

@@ -1,5 +1,8 @@
 module PathsHelper
   def path_selections
-    Path.all(order: :name).map{|p|[p.name,p.id]}
+    paths_by_alpha.map{|p|[p.name,p.id]}
+  end
+  def paths_by_alpha
+    Path.all(order: :name)
   end
 end

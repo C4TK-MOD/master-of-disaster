@@ -13,7 +13,7 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :email, :first_name, :last_name, :password_digest, :skill_ids, :physical_asset_ids
+  attr_accessible :email, :first_name, :last_name, :password_digest, :skill_ids, :physical_asset_ids, :certification_ids
 
   has_many :authorizations
 

@@ -1,0 +1,35 @@
+<%= form_for(@user) do |f| %>
+
+<h2>
+  <%= @user.full_name %>
+</h2>
+<h3>
+  <%= @user.email %>
+</h3>
+
+<h3>Certifications</h3>
+<div class="field">
+<% paths_by_alpha.each do |path| %>
+  <fieldset class="choices">
+    <legend class="label">
+      <label><%=path.name%></label>
+    </legend>
+<ul>
+<% Certification.find_all_by_path_id(path.id).each do |certification| %>
+<% selected = @user.certification_assertions.detect{|a|a.certification_id == certification.id} %>
+      <li class="choice">
+        <label for="user_certification_ids_<%= certification.id %>">
+          <input id="user_certification_ids_<%= certification.id %>" name="user[certification_ids][]" type="checkbox" value="<%= certification.id %>" <%= 'checked="true"' if selected %>>
+            <%= certification.name %> <%= "<strong>[VERIFIED]</strong>".html_safe if (selected && selected.is_verified?) %>
+        </label>
+      </li>
+    <% end %>
+</ul>
+  </fieldset>
+<% end %>
+</div>
+
+<div class="actions">
+  <%= f.submit %>
+</div>
+<% end %>
