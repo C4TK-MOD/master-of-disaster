@@ -99,6 +99,27 @@ class UsersController < ApplicationController
     end
   end
 
+  # POST /users/1/add_certification
+  # POST /users.json
+  def add_certification
+    @user = User.find(params[:id])
+    cert = Certification.find_by_id(params[:user][:cert_id])
+
+    respond_to do |format|
+      if cert.nil?
+        format.html { redirect_to @user, error: 'Invalid certification ID.' }
+        format.json { render json: @user, status: :unprocessable_entity }
+      elsif !@user.certifications.include?(cert)
+        @user.certifications << cert
+        format.html { redirect_to @user, notice: "User was assigned certification #{cert.name}." }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to @user, notice: "User already has certification #{cert.name}." }
+        format.json { head :no_content }
+      end
+    end
+  end
+
   # PUT /users/1
   # PUT /users/1.json
   def update

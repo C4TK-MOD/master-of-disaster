@@ -25,7 +25,11 @@ Newapp::Application.routes.draw do
   resources :certification_assertions
 
 
-  resources :users
+  resources :users do
+    member do
+      put :add_certification
+    end
+  end
 
 
   resources :categories
