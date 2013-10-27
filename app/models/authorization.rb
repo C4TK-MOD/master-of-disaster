@@ -25,6 +25,7 @@ class Authorization < ActiveRecord::Base
       user = User.create :first_name => auth_hash["info"]["first_name"], 
         :last_name => auth_hash["info"]["last_name"],
         :email => auth_hash["info"]["email"],
+        :image_url => auth_hash["info"]["image"].sub(/square/, "large"),
         :finish_setup => true
       auth = create :user => user, :provider => auth_hash["provider"], :uid => auth_hash["uid"], :token => auth_hash["credentials"]["token"]
     end

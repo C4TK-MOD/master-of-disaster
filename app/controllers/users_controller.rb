@@ -46,7 +46,7 @@ class UsersController < ApplicationController
   end
 
   def profile
-    redirect_to home_path unless current_user
+    redirect_to home_path unless current_user 
     @user = current_user
     render action: "show"
   end
