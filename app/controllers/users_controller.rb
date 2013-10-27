@@ -64,7 +64,12 @@ class UsersController < ApplicationController
       cert.belongs_to_user = true
     end
 
-    @certifications = @certifications.concat(Certification.where('id not in (?)',@certifications))
+   if @certifications.length == 0
+     @certifications = Certification.all
+   else
+     @certifications = @certifications.concat(Certification.where('id not in (?)',@certifications))
+   end
+
     respond_to do |format|
       format.html
       # format.json { render json: @certifications.to_json }
