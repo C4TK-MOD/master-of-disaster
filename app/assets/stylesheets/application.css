@@ -11,3 +11,10 @@
  *= require_self
  *= require_tree .
  */
+* {
+	font-family: "Helvetica Neue";
+	/*font-weight: lighter;*/
+}
+.grey-font {
+	color: rgb(152,152,152);
+}

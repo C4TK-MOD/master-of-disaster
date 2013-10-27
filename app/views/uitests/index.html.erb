@@ -1,0 +1,130 @@
+<div class="swiper-container swiper-parent">
+	<div class="swiper-wrapper">
+		<div class="swiper-slide">
+			<h1>Master<br />Of<br />Disaster</h1>
+		</div>
+		<div class="swiper-slide">
+			<h1>Sign in</h1>
+			<%= form_for(:sessions, url: "/auth/password/callback") do |f| %>
+			  <div class="field">
+			    <%= label_tag :email %><br />
+			    <%= f.text_field :email %>
+			  </div>
+			  <div class="field">
+			    <%= label_tag :password %><br />
+			    <%= f.password_field :password %>
+			  </div>
+			  <div class="actions">
+			    <%= submit_tag "Sign in" %>
+			  </div>
+			<% end %>
+
+			--- OR ---
+
+			<%= link_to "Connect With Facebook", "/auth/facebook" %>
+		</div>
+		<div class="swiper-slide">
+			<div class="swiper-container swiper-nested-1">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide swiper-no-swiping">
+						<h2>Upcomming training</h2>
+						<div id='calendar'></div>
+					</div>
+					<div class="swiper-slide">
+						<div class="" style="margin: 10px;">
+							<button class="btn btn-info" onclick="goToTraining()">Upcoming training</button>
+							<button class="btn btn-info" onclick="goToStats()">Profile Statistics</button>
+						</div>
+						<div class="well well-small" style="margin: 10px;">
+							<span class="label label-important"><h4>DISASTER ALERT!</h4></span>
+							<h6>Technologist stuck in basement of austin business school<br />
+							<a href="#">Serve now!</a></h6>
+						</div>
+						<div class="well well-small" style="margin: 10px; text-align:left;">
+							<div class="well well-small" style="padding-bottom: 4px; padding-top: 4px; margin-bottom: 2px;">
+								<small>Attended orientation <span class="pull-right">10/27/13</span></small>
+							</div>
+							<div class="well well-small" style="padding-bottom: 4px; padding-top: 4px; margin-bottom: 2px;">
+								<small>Joined Austin Disaster Relief Network <span class="pull-right">10/27/13</span></small>
+							</div>
+							<div class="well well-small" style="padding-bottom: 4px; padding-top: 4px; margin-bottom: 2px;">
+								<small>Joined Master of Disaster <span class="pull-right">10/27/13</span></small>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="swiper-slide">
+			<div class="swiper-container swiper-nested-2">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide swiper-no-swiping">Full Tree</div>
+					<div class="swiper-slide">Stats</div>
+					<div class="swiper-slide swiper-no-swiping">
+						<div class="swiper-container swiper-nested-3 swiper-no-swiping">
+							<div class="swiper-wrapper swiper-no-swiping">
+								<div class="swiper-slide">Neighborhood & City</div>
+								<div class="swiper-slide">Family and Personal Preparedness</div>
+								<div class="swiper-slide">Orientation</div>
+								<div class="swiper-slide">Spiritual Readiness</div>
+								<div class="swiper-slide">Leadership Roles</div>
+							</div>
+						</div>
+					</div>
+					<div class="swiper-slide swiper-no-swiping swiper-no-swiping-2">Vertical Slide 2</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+var swiperParent = new Swiper('.swiper-parent',{
+    slidesPerView: 1,
+    noSwiping: true,
+    onSlideChangeEnd: function() {
+	    if ( ! swiperParent.getSlide( 2 ).isActive() ) {
+	        swiperNested1.swipeTo( 1 );
+	    }
+	    if ( ! swiperParent.getSlide( 3 ).isActive() ) {
+	        swiperNested2.swipeTo( 1 );
+	    }
+	    if ( ! swiperNested2.getSlide( 2 ).isActive() ) {
+	        swiperNested3.swipeTo( 2 );
+	    }
+	}
+  })
+  var swiperNested1 = new Swiper('.swiper-nested-1',{
+    mode: 'vertical',
+    initialSlide: 1,
+    slidesPerView: 1,
+    noSwipingClass: 'swiper-no-swiping1'
+  })
+  var swiperNested2 = new Swiper('.swiper-nested-2',{
+    mode: 'vertical',
+    initialSlide: 1,
+    slidesPerView: 1,
+//    onSlideChangeEnd: function() {
+//	    if ( ! swiperNested2.getSlide( 2 ).isActive() ) {
+//	        swiperNested3.swipeTo( 2 );
+//	    }
+//	},
+	noSwipingClass: 'swiper-no-swiping2'
+  })
+  var swiperNested3 = new Swiper('.swiper-nested-3',{
+  	loop: true,
+    initialSlide: 2,
+    slidesPerView: 1,
+    noSwipingClass: 'swiper-no-swiping3'
+  })
+	$('#calendar').fullCalendar({
+	        // put your options and callbacks here
+	})
+swiperParent.swipeTo(3);
+swiperNested2.swipeTo(0);
+/*setTimeout(function(){
+	swiperParent.swipeTo( 2 );
+	setTimeout(function() {
+		//swiperParent.removeSlide(1);
+	}, 100);
+}, 1500);*/
+</script>
