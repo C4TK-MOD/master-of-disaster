@@ -56,6 +56,7 @@ class AddDefaultObjects < ActiveRecord::Migration
     attrs[:path_id] = p3.id
     attrs[:prerequisite_id] = c7.id
     c8 = Certification.create(attrs)
+    attrs.delete(:prerequisite_id)
     attrs[:name] = "HAM"
     attrs[:description] = "Radio operation for emergency situations"
     attrs[:path_id] = p3.id
