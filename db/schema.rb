@@ -115,7 +115,7 @@ ActiveRecord::Schema.define(:version => 20131027082301) do
     t.string   "last_logged_in"
     t.integer  "zip_code"
     t.decimal  "level",          :precision => 8, :scale => 2
-    t.integer  "phone"
+    t.string   "phone"
     t.boolean  "is_admin",                                     :default => false
     t.string   "image_url"
   end
