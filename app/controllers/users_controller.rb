@@ -103,7 +103,6 @@ class UsersController < ApplicationController
   # PUT /users/1.json
   def update
     @user = User.find(params[:id])
-    @params = params[:user][:assets]
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
