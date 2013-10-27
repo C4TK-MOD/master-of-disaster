@@ -1,10 +1,15 @@
 class UsersController < ApplicationController
 
-  skip_before_filter :authenticate, :only => [:new, :create]
-
-  # GET /users
-  # GET /users.json
+ skip_before_filter :authenticate, :only => [:new, :create]
+ 
+ # GET /users
+ # GET /users.json
   def index
+    unless current_user && current_user.is_admin?
+      redirect_to :home
+      return
+    end
+
     @users = User.all
 
     respond_to do |format|
@@ -38,6 +43,21 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
+  end
+
+  def profile
+    redirect_to home_path unless current_user
+    @user = current_user
+    render action: "show"
+  end
+
+  def certifications
+    redirect_to home_path unless current_user
+    if params[:id]
+      @user = User.find(params[:id])
+    else
+      @user = current_user
+    end
   end
 
   # POST /users
