@@ -10,7 +10,7 @@ Newapp::Application.routes.draw do
   get "uitests/uitests"
 
 
-  match 'uitests' => 'uitests#uitests'
+  match 'uitests' => 'uitests#index'
   match 'uitests/index' => 'uitests#index'
   match 'uitests/splashscreen' => 'uitests#splashscreen'
   match 'uitests/home' => 'uitests#home'

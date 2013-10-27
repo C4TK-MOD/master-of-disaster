@@ -1,0 +1,15 @@
+.pagecontainer {
+	width: 100%;
+	margin: 0px;
+	height: 460px;
+}
+.navbar-fixed-top {
+	/*margin-left: 0px;
+	margin-right: 0px;*/
+	margin: 0px;
+}
+body {
+	padding: 0px;
+}
+.swiper-container{width:100%;height:100%;color:#000;text-align:center;}
+.red-slide{background:#ca4040;}.blue-slide{background:#4390ee;}.orange-slide{background:#ff8604;}.green-slide{background:#49a430;}.pink-slide{background:#973e76;}
