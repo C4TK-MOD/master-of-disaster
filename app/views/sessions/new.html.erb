@@ -1,6 +1,8 @@
 <div style="text-align: center">
 <img src="/assets/helpoutlogo.png" alt="HelpOut Logo" height="42" width="360">
-
+<div>
+  <h2 style="font-weight: lighter;" class="grey-font">Impact your<br />local community</h2>
+<!--
 <%= form_for(:sessions, url: "/auth/password/callback") do |f| %>
   <div class="field">
     <%= label_tag :email %><br />
@@ -16,8 +18,10 @@
     <a href="#fakelink" class="btn btn-block btn-lg btn-primary">Primary Button</a>
   </div>
 <% end %>
+-->
 <br />
---- OR ---<br />
 <br />
-<%= link_to "Connect With Facebook", "/auth/facebook" %>
+<%= link_to "Connect With Facebook", "/auth/facebook", class: "btn btn-large btn-facebook", style: "width: 240px;" %>
+<div style="height: 100px;">&nbsp;</div>
+<%= link_to "I'm Back, Login", "/auth/email", class: "btn btn-large btn-success", style: "width: 240px; bottom: 10px;" %>
 </div>
