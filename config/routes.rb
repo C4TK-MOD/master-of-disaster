@@ -1,5 +1,9 @@
 Newapp::Application.routes.draw do
 
+  get "admin/index"
+  get "/admin", :to => "admin#index", :as => :admin
+  get "/home", :to => "events#index", :as => :home
+
   resources :paths
 
 
