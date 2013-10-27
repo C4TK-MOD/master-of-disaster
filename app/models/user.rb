@@ -8,7 +8,6 @@
 #  email           :string(255)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
-#  has_local_login :boolean
 #  last_logged_in  :string(255)
 #  zip_code        :integer
 #  level           :decimal(8, 2)
@@ -19,13 +18,15 @@ class User < ActiveRecord::Base
   attr_accessible :email, :first_name, :last_name, :last_logged_in, :zip_code, :level,
     :password, :password_confirmation, :finish_setup, :phone, :is_local, :skill_ids,
     :physical_asset_ids, :certification_ids
-  attr_accessor :finish_setup, :is_local, :password, :password_confirmation
+  attr_accessor :finish_setup, :is_local, :skill_ids, :physical_asset_ids,
+    :password, :password_confirmation
 
   has_many :authorizations
   validates :email, :first_name, :last_name, :presence => true
   validates :email, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i }, :uniqueness => true
-  validates :password, :zip_code, :phone, :presence => true, :unless => :finish_setup?
-  validates_confirmation_of :password, :unless => :finish_setup?
+  validates :zip_code, :phone, :presence => true, :unless => :finish_setup?
+  validate :password, :unless => :finish_setup? || :is_remote_login?
+  validates_confirmation_of :password, :unless => :finish_setup? || :is_remote_login?
 
 
   has_many :skill_assertions
@@ -60,7 +61,7 @@ class User < ActiveRecord::Base
     return @finish_setup
   end
 
-  def is_local?
-    
+  def is_remote_login?
+    return self.authorizations.count != 0 && self.authorizations.find_by_provider("facebook")
   end
 end

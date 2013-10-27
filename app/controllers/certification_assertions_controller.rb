@@ -1,5 +1,6 @@
 class CertificationAssertionsController < ApplicationController
   require 'plivo_messenger'
+  
   before_filter :find_cert, except: :index
   def index
     @pending_certs = CertificationAssertion.all(conditions: {is_verified: false}).group_by(&:certification).sort_by{|a|a[0].name}

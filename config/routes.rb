@@ -11,7 +11,8 @@ Newapp::Application.routes.draw do
   get "/admin", :to => "admin#index", :as => :admin
   get "/home", :to => "events#index", :as => :home
   get "/profile", :to => "users#profile", :as => :profile
-  get "/certifications", :to => "users#certifications", :as => :certifications
+  get "/my_certifications", :to => "users#certifications", :as => :my_certifications
+
 
   resources :paths
 
