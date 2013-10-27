@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="apple-mobile-web-app-capable" content="yes" />
     <title><%= content_for?(:title) ? yield(:title) : "Newapp" %></title>
     <%= csrf_meta_tags %>
 
@@ -38,17 +37,7 @@
     <%= javascript_include_tag "application" %>
   </head>
   <body>
-<script>
-    /* iOS re-orientation fix */
-    if (navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i)) {
-        /* iOS hides Safari address bar */
-        window.addEventListener("load",function() {
-            setTimeout(function() {
-                window.scrollTo(0, 1);
-            }, 1000);
-        });
-    }
-</script>
+
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
@@ -60,17 +49,36 @@
           <a class="brand" href="#">Newapp</a>
           <div class="container nav-collapse">
             <ul class="nav">
-                <li onclick="goToLogin()">Login</li>
-              <!--<li><%= link_to "Login", "/login"  %></li>-->
+<% if current_user %>
+              <li><%= link_to "Home", "/home"  %></li>
+              <li><%= link_to "Profile", "/profile"  %></li>
+<% else %>
+              <li><%= link_to "Login", "/login"  %></li>
+<% end %>
+<% if admin? %>
+              <li><%= link_to "Admin", "/admin"  %></li>
+<% end %>
+<% if current_user %>
+              <li><%= link_to "Logout", "/logout"  %></li>
+<% end %>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
       </div>
     </div>
 
-    <div class="pagecontainer">
-          <%= bootstrap_flash %>
-          <%= yield %>
+    <div class="container">
+        <div class="row-fluid">
+          <div class="span9">
+            <%= bootstrap_flash %>
+            <%= yield %>
+          </div>
+        </div><!--/row-->
+
+      <footer>
+        <p>&copy; Company 2013</p>
+      </footer>
+
     </div> <!-- /container -->
 
   </body>
