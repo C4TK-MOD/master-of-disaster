@@ -1,49 +1,36 @@
+<% provide(:title, 'Events') %>
 <div>
-    <div style="text-align: center">
-        <h1>Events</h1>
-    </div>
-
-    <div>
-        <div>
-            <h3><span class="pull-left">Austin Flooding</span><span class="pull-right"><small>10 people needed</small></span>
-        </div>
-        <br class="clearfix" />
-        <div>
-            <img src="/assets/austinflood.jpg" style="position: absolute; left: 0px; clip: rect(20px, 360px, 170px, 0px);">
-        &nbsp;
-        </div>
-    </div>
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <!--<th>Start time</th>
-    <th>End time</th>
-    <th>City</th>
-    <th>State</th>
-    <th>Zip</th>-->
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
 <% @events.each do |event| %>
-  <tr>
-    <td><%= event.name %></td>
-    <td><%= event.description %></td>
-    <!--<td><%= event.start_time %></td>
-    <td><%= event.end_time %></td>
-    <td><%= event.city %></td>
-    <td><%= event.state %></td>
-    <td><%= event.zip %></td>-->
-    <td><%= link_to 'Show', event %></td>
-    <td><%= link_to 'Edit', edit_event_path(event) %></td>
-    <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+    <div class="row">
+        <div>
+            <h3><span class="pull-left"><%= event.name %></span><span class="pull-right"><small>10 people needed</small></span>
+        </div>
+        <br />
+        <br />
+        <div class="row" style="height: 180px; background-image:url('<%= event.image_url %>'); background-position:center; background-repeat:no-repeat;">
+            &nbsp;
+        </div>
+    </div>
+    <div class="row">
+        <h4 class="text-center"><%= link_to 'View More Details', event %></h4>
+    </div>
+    <div class="row-fixed text-center">
+        <table width="100%" cell-padding="0" cell-spacing="0" style="background-color:#D4D4D4">
+            <tr>
+                <td style="padding-top:5px; padding-bottom:5px; width: 50%">
+                    <a href="" class="btn btn-medium btn-success" style="width: 110px;">Accept</a>
+                </td>
+                <td style="padding-top:5px; padding-bottom:5px; width: 50%">
+                    <a href="" style="font-weight: bold; color: white">Not Available</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    
 <% end %>
-</table>
 
 <br />
-
+<% if  admin? %>
 <%= link_to 'Report Event', new_event_path %>
+<% end %>
 </div>

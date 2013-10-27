@@ -11,7 +11,7 @@
  *= require_self
  *= require_tree .
  */
-* {
+body {
 	font-family: "Helvetica Neue";
 	/*font-weight: lighter;*/
 }
