@@ -26,8 +26,9 @@
 		<div class="swiper-slide">
 			<div class="swiper-container swiper-nested-1">
 				<div class="swiper-wrapper">
-					<div class="swiper-slide">
-						Upcomming training:
+					<div class="swiper-slide swiper-no-swiping">
+						<h2>Upcomming training</h2>
+						<div id='calendar'></div>
 					</div>
 					<div class="swiper-slide">
 						<div class="" style="margin: 10px;">
@@ -57,19 +58,20 @@
 		<div class="swiper-slide">
 			<div class="swiper-container swiper-nested-2">
 				<div class="swiper-wrapper">
-					<div class="swiper-slide pink-slide">Vertical Slide 1</div>
-					<div class="swiper-slide orange-slide">Vertical Slide 2</div>
+					<div class="swiper-slide swiper-no-swiping">Full Tree</div>
+					<div class="swiper-slide">Stats</div>
 					<div class="swiper-slide swiper-no-swiping">
 						<div class="swiper-container swiper-nested-3 swiper-no-swiping">
 							<div class="swiper-wrapper swiper-no-swiping">
-								<div class="swiper-slide pink-slide">Vertical Slide 11</div>
-								<div class="swiper-slide orange-slide">Vertical Slide 12</div>
-								<div class="swiper-slide blue-slide">Vertical Slide 13</div>
-								<div class="swiper-slide green-slide">Vertical Slide 14</div>
-								<div class="swiper-slide pink-slide">Vertical Slide 15</div>
+								<div class="swiper-slide">Neighborhood & City</div>
+								<div class="swiper-slide">Family and Personal Preparedness</div>
+								<div class="swiper-slide">Orientation</div>
+								<div class="swiper-slide">Spiritual Readiness</div>
+								<div class="swiper-slide">Leadership Roles</div>
 							</div>
 						</div>
 					</div>
+					<div class="swiper-slide swiper-no-swiping swiper-no-swiping-2">Vertical Slide 2</div>
 				</div>
 			</div>
 		</div>
@@ -86,30 +88,39 @@ var swiperParent = new Swiper('.swiper-parent',{
 	    if ( ! swiperParent.getSlide( 3 ).isActive() ) {
 	        swiperNested2.swipeTo( 1 );
 	    }
-	}
-  })
-  var swiperNested1 = new Swiper('.swiper-nested-1',{
-    mode: 'vertical',
-    initialSlide: 1,
-    slidesPerView: 1
-  })
-  var swiperNested2 = new Swiper('.swiper-nested-2',{
-    mode: 'vertical',
-    initialSlide: 1,
-    slidesPerView: 1,
-    onSlideChangeEnd: function() {
 	    if ( ! swiperNested2.getSlide( 2 ).isActive() ) {
 	        swiperNested3.swipeTo( 2 );
 	    }
 	}
   })
+  var swiperNested1 = new Swiper('.swiper-nested-1',{
+    mode: 'vertical',
+    initialSlide: 1,
+    slidesPerView: 1,
+    noSwipingClass: 'swiper-no-swiping1'
+  })
+  var swiperNested2 = new Swiper('.swiper-nested-2',{
+    mode: 'vertical',
+    initialSlide: 1,
+    slidesPerView: 1,
+//    onSlideChangeEnd: function() {
+//	    if ( ! swiperNested2.getSlide( 2 ).isActive() ) {
+//	        swiperNested3.swipeTo( 2 );
+//	    }
+//	},
+	noSwipingClass: 'swiper-no-swiping2'
+  })
   var swiperNested3 = new Swiper('.swiper-nested-3',{
   	loop: true,
     initialSlide: 2,
-    slidesPerView: 1
+    slidesPerView: 1,
+    noSwipingClass: 'swiper-no-swiping3'
   })
-  swiperParent.swipeTo(3);
-  swiperNested2.swipeTo(2);
+	$('#calendar').fullCalendar({
+	        // put your options and callbacks here
+	})
+swiperParent.swipeTo(3);
+swiperNested2.swipeTo(0);
 /*setTimeout(function(){
 	swiperParent.swipeTo( 2 );
 	setTimeout(function() {
