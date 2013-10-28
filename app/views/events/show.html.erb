@@ -1,5 +1,10 @@
+<% provide(:title, @event.name) %>
 <p id="notice"><%= notice %></p>
 
+<div class="row" style="height: 180px; background-image:url('<%= @event.image_url %>'); background-position:center; background-repeat:no-repeat;">
+            &nbsp;
+        </div>
+        <br />
 <p>
   <b>Name:</b>
   <%= @event.name %>
@@ -10,7 +15,7 @@
   <%= @event.description %>
 </p>
 
-<p>
+<div style="display:none;"><p>
   <b>Start time:</b>
   <%= @event.start_time %>
 </p>
@@ -28,13 +33,15 @@
 <p>
   <b>State:</b>
   <%= @event.state %>
-</p>
+</p></div>
 
 <p>
   <b>Zip:</b>
   <%= @event.zip %>
 </p>
 
-
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+<!--<%= link_to 'Edit', edit_event_path(@event) %> |-->
+<div style="text-align: center;">
+<a href="" class="btn btn-medium btn-success" style="width: 110px;">Accept</a>
+<br /><br />
+<%= link_to 'Back', events_path, class: "btn", style: "width: 110px;" %></div><br /><br />
