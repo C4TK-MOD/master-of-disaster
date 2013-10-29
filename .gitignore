@@ -16,3 +16,13 @@
 
 # Ignore Mac Filesystem Files
 .DS_Store
+
+# Ignore deployment files
+/config/unicorn.rb
+/config/unicorn_init.sh
+/config/install_site.sh
+/config/uninstall_site.sh
+/config/nginx.conf
+/config/deploy
+/config/deploy.rb
+/Capfile

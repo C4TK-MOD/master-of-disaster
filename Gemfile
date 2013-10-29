@@ -2,11 +2,13 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
 
+gem 'sqlite3'
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 group :production do
-  gem 'pg'
+  
 end
 
 
@@ -26,7 +28,6 @@ end
 
 group :development do
   gem "annotate", '2.5.0'
-  gem 'sqlite3'
 end
 
 gem 'jquery-rails'
@@ -44,10 +45,10 @@ gem 'plivo'
 # gem 'jbuilder'
 
 # Use unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Deploy with Capistrano
-# gem 'capistrano'
+gem 'capistrano'
 
 # To use debugger
 # gem 'debugger'
