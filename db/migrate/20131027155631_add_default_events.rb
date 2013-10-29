@@ -8,7 +8,7 @@ class AddDefaultEvents < ActiveRecord::Migration
     attrs[:city] = "Austin"
     attrs[:state] = "TX"
     attrs[:zip] = 78744
-    attrs[:image_url] = "/assets/tornado-OK.jpg"
+    attrs[:image_url] = "/assets/austinflood.jpg"
     e1 = Event.create(attrs)
 
     attrs[:name] = "Tornado Cleanup"
@@ -16,7 +16,7 @@ class AddDefaultEvents < ActiveRecord::Migration
     attrs[:city] = "Moore"
     attrs[:state] = "OK"
     attrs[:zip] = 78744
-    attrs[:image_url] = "/assets/austinflood.jpg"
+    attrs[:image_url] = "/assets/tornado-OK.jpg"
     e2 = Event.create(attrs)
 
   end
