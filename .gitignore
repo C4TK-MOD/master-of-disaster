@@ -25,4 +25,5 @@
 /config/nginx.conf
 /config/deploy
 /config/deploy.rb
+/config/copy_config.sh
 /Capfile

@@ -48,6 +48,9 @@ gem 'plivo'
 gem 'unicorn'
 
 # Deploy with Capistrano
+gem 'capistrano-rvm'
+gem 'capistrano-bundler'
+gem 'capistrano-rails'
 gem 'capistrano'
 
 # To use debugger
