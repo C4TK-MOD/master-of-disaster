@@ -11,13 +11,8 @@
     </div>
   <% end %>
 
-  <div style="width: 100%">
-    <div style="margin-left: auto; margin-right: auto; width: 180px; height: 180px;">
-      <%= image_tag(@user.image_url, class: "img-circle") %>
-    </div>
-  </div>
-<br />
-<div style="text-align: center;">
+  <div class="row pagination-centered" style="padding-top:5px;">
+    <%= image_tag(@user.image_url, class: "img-circle") %>
   <h2>Welcome, <%= @user.first_name %>!</h2>
   <div style="display: none;">
     <%= label_tag :email %><br />
@@ -41,10 +36,11 @@
       <%= f.password_field :password_confirmation %>
     </div>
   <% end %>
-
-
   <div class="actions">
     <%= f.submit "Next", class: "btn btn-large btn-success", style: "width: 240px; bottom: 10px;" %>
   </div>
+  </div>
+
+
 </div>
 <% end %>

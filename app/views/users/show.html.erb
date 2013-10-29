@@ -1,16 +1,21 @@
 
-<p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @user.full_name %>
-</p>
+<div class="row pagination-centered" style="width: 100%">
+  <%= image_tag(@user.image_url, class: "img-circle") %>
+  <!-- <div style="margin-left: auto; margin-right: auto; width: 180px; height: 180px;">
+    <%= image_tag(@user.image_url, class: "img-circle") %>
+  </div> -->
+</div>
+<div class="row text-center">
+  <h2><%= @user.full_name %></h2>
+  <div class="grey-font">
+    <p><%= @user.email %></p>
+    <p><a href="#" class="grey-font">16 Badges</a></p>
+    <p><a href="#" class="grey-font">2000+ Service Hours</a></p>
+  </div>
 
-<p>
-  <b>Email:</b>
-  <%= @user.email %>
-</p>
-
+</div>
+<!-- 
 <p>
   <b>Skills:</b>
   <%= @user.skills.map(&:name).join(", ") %>
@@ -24,5 +29,5 @@
 <p>
   <b>Certifications:</b>
   <%= @user.certification_assertions.map(&:display_label).join(", ").html_safe %>
-</p>
+</p> -->
 
