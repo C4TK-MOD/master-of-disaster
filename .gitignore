@@ -27,3 +27,5 @@
 /config/deploy.rb
 /config/copy_config.sh
 /Capfile
+# Ignore application configuration
+/config/application.yml
